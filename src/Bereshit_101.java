@@ -63,7 +63,7 @@ public class Bereshit_101 {
                     if(vs<5) {NN=0.7;} // if it is slow enough - go easy on the brakes
                 }
             }
-            if(alt<5) { // no need to stop
+            if(alt < 5) { // no need to stop
                 NN=0.4;
             }
             // main computations
