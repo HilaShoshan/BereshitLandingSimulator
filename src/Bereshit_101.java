@@ -2,8 +2,6 @@ import java.net.URISyntaxException;
 
 /**
  * This class represents the basic flight controller of the Bereshit space craft.
- * @author ben-moshe
- *
  */
 public class Bereshit_101 {
     public static final double WEIGHT_EMP = 165; // kg
@@ -61,38 +59,43 @@ public class Bereshit_101 {
                 file.write(data+'\n');
             }
 
-            if(alt>2000) {	// maintain a vertical speed of [20-25] m/s
+            if(alt > 2000) {  // maintain a vertical speed of [20-25] m/s
             	NN = 1 - (vs_controller.getOutput(vs, 20));
-			}
-			// lower than 2 km - horizontal speed should be close to zero
-			else {
-				vs_controller.setP(0.2);
-				vs_controller.setI(0.99);
-				vs_controller.setD(0.25);
-				vs_controller.setF(0.5);
-				//change angle
-				if(ang>3) {
-					ang += ang_controller.getOutput(ang, 0)/360;
-				} // rotate to vertical position.
-				else {ang=0;}
-				NN= 1 - (vs_controller.getOutput(vs, 10)); 
-				if(hs<2) {hs=0;}
-				if(vs <= 10 & alt > 125) {
-					NN = 0.7;
-				}
-				if(alt<5) { // no need to stop
-					NN=0.4;
-				}
-				else if(alt<125) { // very close to the ground!
-					NN=1; // maximum braking!
-					if(vs<5) {NN=0.7;} // if it is slow enough - go easy on the brakes 
-				}
-			}
+	    }
+	    // lower than 2 km - horizontal speed should be close to zero
+	    else {
+		vs_controller.setP(0.2);
+		vs_controller.setI(0.99);
+		vs_controller.setD(0.25);
+		vs_controller.setF(0.5);
+		//change angle
+		if(ang > 3) {
+		   ang += ang_controller.getOutput(ang, 0)/360;
+		} // rotate to vertical position.
+		else {
+		   ang=0;
+		}
+		NN= 1 - (vs_controller.getOutput(vs, 10)); 
+		if(hs < 2) {
+		   hs=0;
+		}
+		if(vs <= 10 & alt > 125) {
+		   NN = 0.7;
+		}
+		if(alt < 5) {  // no need to stop
+		   NN=0.4;
+		}
+		else if(alt < 125) {  // very close to the ground!
+		   NN=1; // maximum braking!
+		   if(vs<5) {NN=0.7;} // if it is slow enough - go easy on the brakes 
+		}
+	    }
+		
             // main computations
             double ang_rad = Math.toRadians(ang);
             double h_acc = Math.sin(ang_rad)*acc;
             double v_acc = Math.cos(ang_rad)*acc;
-            double vacc = Moon.getAcc(hs); //when hs = 0, vacc = 1.622
+            double vacc = Moon.getAcc(hs);  //when hs = 0, vacc = 1.622
             time += dt;
             double dw = dt*ALL_BURN*NN;
             if(fuel > 0) {
@@ -100,7 +103,7 @@ public class Bereshit_101 {
                 weight = WEIGHT_EMP + fuel;
                 acc = NN* accMax(weight);
             }
-            else { // ran out of fuel
+            else {  // ran out of fuel
                 acc=0;
             }
             v_acc -= vacc;
