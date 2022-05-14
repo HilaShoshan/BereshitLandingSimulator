@@ -46,46 +46,54 @@ public class Bereshit_101 {
 
         // a file in which we write all the data
         DataFile file = new DataFile("new.txt");
-        file.write("time, vs, hs, dist, alt, ang, weight, acc \n");
 
         // add PID Controller
-        PID ang_controller = new PID(0.25, 0.4, 0.01);
-
+        PID ang_controller = new PID(0.3, 0.5, 0.01);
+//        
+//        
+        PID vs_controller = new PID(0.2, 0.99, 0.25, 0.5);
+        vs_controller.setOutputLimits(0, 50);
+//        PID hs_controller = new PID(0.4, 0.6, 0.01);
+        
         // ***** main simulation loop ******
         while(alt > 0) {
             if(time % 10==0 || alt < 100) {
                 String data = time+","+vs+","+hs+","+dist+","+alt+","+ang+","+weight+","+acc;
-                System.out.println(data);
+                //System.out.println(data);
                 file.write(data+'\n');
-                ang = ang_controller.compute(alt);  // set the orientation
             }
 
-
-
-            // over 2 km above the ground
-            if(alt > 2000) {	// maintain a vertical speed of [20-25] m/s
-                if(vs > 25) {NN+=0.003*dt;} // more power for braking
-                if(vs < 20) {NN-=0.003*dt;} // less power for braking
-            }
-            // lower than 2 km - horizontal speed should be close to zero
-            else {
-                /*if(ang > 3) {ang-=3;} // rotate to vertical position.
-                else {ang =0;}*/
-                NN=0.5; // brake slowly, a proper PID controller here is needed!
-                if(hs<2) {hs=0;}
-                if(alt<125) { // very close to the ground!
-                    NN=1; // maximum braking!
-                    if(vs<5) {NN=0.7;} // if it is slow enough - go easy on the brakes
-                }
-            }
-            if(alt < 5) { // no need to stop
-                NN=0.4;
-            }
+            if(alt>2000) {	// maintain a vertical speed of [20-25] m/s
+				if(vs >25) {NN+=0.003*dt;} // more power for braking
+				if(vs <20) {NN-=0.003*dt;} // less power for braking
+			}
+			// lower than 2 km - horizontal speed should be close to zero
+			else {
+				if(ang>3) {
+					ang += ang_controller.getOutput(ang, 0)/360;
+					//ang-=3;
+					System.out.println(ang);
+					System.out.println("alt is:" + alt);
+				} // rotate to vertical position.
+				else {ang =0;}
+				NN=1 - (vs_controller.getOutput(vs, 10)); // brake slowly, a proper PID controller here is needed!
+				if(hs<2) {hs=0;}
+				if(vs <= 10) {
+					NN = 1;
+				}
+				if(alt<125) { // very close to the ground!
+					NN=1; // maximum braking!
+					if(vs<5) {NN=0.7;} // if it is slow enough - go easy on the brakes 
+				}
+			}
+			if(alt<5) { // no need to stop
+				NN=0.4;
+			}
             // main computations
             double ang_rad = Math.toRadians(ang);
             double h_acc = Math.sin(ang_rad)*acc;
             double v_acc = Math.cos(ang_rad)*acc;
-            double vacc = Moon.getAcc(hs);
+            double vacc = Moon.getAcc(hs); //when hs = 0, vacc = 1.622
             time += dt;
             double dw = dt*ALL_BURN*NN;
             if(fuel > 0) {
