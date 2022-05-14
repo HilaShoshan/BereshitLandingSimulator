@@ -11,10 +11,10 @@ public class PID {
         this.ti = ti;
     }
 
-    public double compute(double current_value, double dt) {
+    public double compute(double current_value) {
         double cte = current_value - this.true_value;
         this.derivative_cte = cte - last_cte;
-        this.sum_cte += cte;  // integral part
+        this.sum_cte += cte;  // integral
         double alpha = -tp * cte -td * derivative_cte - ti * sum_cte;
         this.last_cte = cte;
         return alpha;

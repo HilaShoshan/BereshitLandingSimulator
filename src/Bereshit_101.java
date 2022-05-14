@@ -26,27 +26,42 @@ public class Bereshit_101 {
         double ans = t/weight;
         return ans;
     }
+
     // 14095, 955.5, 24.8, 2.0
     public static void main(String[] args) throws URISyntaxException {
         System.out.println("Simulating Bereshit's Landing:");
+
         // starting point:
         double vs = 24.8;  // vertical speed
         double hs = 932;  // horizontal speed
         double dist = 181*1000;  // the distance from the desired landing point (ignore)
-        double ang = 58.3; // zero is vertical (as in landing)
-        double alt = 13748; // 2:25:40 (as in the simulation) // https://www.youtube.com/watch?v=JJ0VfRL9AMs
+        double ang = 58.3;  // zero is vertical (as in landing)
+        double alt = 13748;  // 2:25:40 (as in the simulation) // https://www.youtube.com/watch?v=JJ0VfRL9AMs
         double time = 0;
-        double dt = 1; // sec
-        double acc = 0; // Acceleration rate (m/s^2)
-        double fuel = 121;  //
+        double dt = 1;  // in seconds
+        double acc = 0;  // Acceleration rate (m/s^2)
+        double fuel = 121;  // how much fuel we have
         double weight = WEIGHT_EMP + fuel;
-        System.out.println("time, vs, hs, dist, alt, ang,weight,acc");
-        double NN = 0.7; // rate[0,1]
+        double NN = 0.7;  // the power for braking, rate[0,1]
+
+        // a file in which we write all the data
+        DataFile file = new DataFile("old.txt");
+        file.write("time, vs, hs, dist, alt, ang, weight, acc");
+
+        // add PID Controller
+        PID ang_controller = new PID(0.25, 0.4, 0.01);
+
         // ***** main simulation loop ******
         while(alt > 0) {
             if(time % 10==0 || alt < 100) {
-                System.out.println(time+","+vs+","+hs+","+dist+","+alt+","+ang+","+weight+","+acc);
+                String data = time+","+vs+","+hs+","+dist+","+alt+","+ang+","+weight+","+acc;
+                System.out.println(data);
+                file.write(data+'\n');
+                // ang = ang_controller.compute(alt);  // set the orientation
             }
+
+
+
             // over 2 km above the ground
             if(alt > 2000) {	// maintain a vertical speed of [20-25] m/s
                 if(vs > 25) {NN+=0.003*dt;} // more power for braking
