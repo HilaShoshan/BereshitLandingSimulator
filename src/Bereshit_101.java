@@ -45,8 +45,8 @@ public class Bereshit_101 {
         double NN = 0.7;  // the power for braking, rate[0,1]
 
         // a file in which we write all the data
-        DataFile file = new DataFile("old.txt");
-        file.write("time, vs, hs, dist, alt, ang, weight, acc");
+        DataFile file = new DataFile("new.txt");
+        file.write("time, vs, hs, dist, alt, ang, weight, acc \n");
 
         // add PID Controller
         PID ang_controller = new PID(0.25, 0.4, 0.01);
@@ -57,7 +57,7 @@ public class Bereshit_101 {
                 String data = time+","+vs+","+hs+","+dist+","+alt+","+ang+","+weight+","+acc;
                 System.out.println(data);
                 file.write(data+'\n');
-                // ang = ang_controller.compute(alt);  // set the orientation
+                ang = ang_controller.compute(alt);  // set the orientation
             }
 
 
@@ -69,8 +69,8 @@ public class Bereshit_101 {
             }
             // lower than 2 km - horizontal speed should be close to zero
             else {
-                if(ang > 3) {ang-=3;} // rotate to vertical position.
-                else {ang =0;}
+                /*if(ang > 3) {ang-=3;} // rotate to vertical position.
+                else {ang =0;}*/
                 NN=0.5; // brake slowly, a proper PID controller here is needed!
                 if(hs<2) {hs=0;}
                 if(alt<125) { // very close to the ground!

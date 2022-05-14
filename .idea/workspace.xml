@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="717665b7-1d4c-45ee-a754-c2687288a576" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/old.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_plots/plot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_plots/old.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/bereshit/Bereshit_101.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/bereshit/Bereshit_101.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_plots/plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_plots/plot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bereshit_101.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bereshit_101.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PID.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -46,19 +50,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.plot">
     <configuration name="Bereshit_101" type="Java Scratch" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Bereshit_101" />
       <module name="bereshit" />
@@ -67,6 +59,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="bereshit" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python_plots" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python_plots/plot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.plot" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -79,7 +98,8 @@
       <option name="presentableId" value="Default" />
       <updated>1652199417715</updated>
       <workItem from="1652199427628" duration="2786000" />
-      <workItem from="1652419596522" duration="15594000" />
+      <workItem from="1652419596522" duration="17201000" />
+      <workItem from="1652526284841" duration="108000" />
     </task>
     <servers />
   </component>
@@ -91,15 +111,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bereshit$plot.coverage" NAME="plot Coverage Results" MODIFIED="1652527203035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_plots" />
   </component>
 </project>
